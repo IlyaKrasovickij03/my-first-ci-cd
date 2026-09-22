@@ -1,5 +1,4 @@
 # app.py
-import nonexistent_module   # намеренная ошибка для задания №3
 import hashlib
 import ipaddress
 import subprocess
