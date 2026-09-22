@@ -8,6 +8,10 @@ from markupsafe import escape
 
 app = Flask(__name__)
 
+# Задание №4: полный путь к исполняемому файлу устраняет B607 по существу —
+# больше не зависим от того, что окажется в $PATH у процесса.
+PING = "/bin/ping"
+
 
 @app.route("/")
 def hello_world():
@@ -38,7 +42,7 @@ def ping():
     # Исправление №3, слой 2: список аргументов вместо строки,
     # shell=False -> оболочка не участвует, инъекция невозможна.
     result = subprocess.run(
-        ["ping", "-c", "1", host],
+        [PING, "-c", "1", host],
         capture_output=True,
         check=False,
         timeout=5,
